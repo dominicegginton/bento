@@ -1,0 +1,9 @@
+{
+  "name": "bento",
+  "description": "A simple, elegant & opinionated start-page",
+  "version": "0.0.0",
+  "chrome_url_overrides": {
+    "newtab": "./index.html"
+  },
+  "manifest_version": 2
+}
