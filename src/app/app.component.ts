@@ -8,8 +8,9 @@ import { map, interval } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  time$ = interval(100).pipe(map(() => new Date()));
-  greeting$ = interval(100).pipe(map(() => this.greeting()));
+  private interval$ = interval(100);
+  time$ = this.interval$.pipe(map(() => new Date()));
+  greeting$ = this.interval$.pipe(map(() => this.greeting()));
 
   private greeting() {
     const hour = new Date().getHours();
