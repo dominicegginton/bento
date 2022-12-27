@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { map, interval } from 'rxjs';
+import { filter, map, pairwise, startWith, timer } from 'rxjs';
 
 @Component({
   selector: 'bento-root',
@@ -8,16 +8,26 @@ import { map, interval } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  private interval$ = interval(100);
-  time$ = this.interval$.pipe(map(() => new Date()));
-  greeting$ = this.interval$.pipe(map(() => this.greeting()));
+  time$ = timer(0, 1000).pipe(
+    map(() => new Date()),
+    startWith(new Date('01/01/2000')),
+    pairwise(),
+    filter(
+      ([prev, curr]) =>
+        prev.getMinutes() < curr.getMinutes() ||
+        prev.getHours() < curr.getHours()
+    ),
+    map(([_, curr]) => curr)
+  );
 
-  private greeting() {
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 12) return 'Good Morning ☕️';
-    if (hour >= 12 && hour < 18) return 'Good Afternoon ☀️';
-    if (hour >= 18 && hour < 22) return 'Good Evening 🌃';
-    if (hour >= 22 || hour < 5) return 'Goodnight 🌙';
-    return 'Have a good day 😄';
-  }
+  greeting$ = this.time$.pipe(
+    map((time) => {
+      const hours = time.getHours();
+      if (hours >= 5 && hours < 12) return 'Good Morning ☕️';
+      if (hours >= 12 && hours < 18) return 'Good Afternoon ☀️';
+      if (hours >= 18 && hours < 22) return 'Good Evening 🌃';
+      if (hours >= 22 || hours < 5) return 'Goodnight 🌙';
+      return 'Have a good day 😄';
+    })
+  );
 }
