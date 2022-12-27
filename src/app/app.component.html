@@ -1,7 +1,7 @@
 <h1 class="f0-mktg">
-  {{ time$ | async | date: 'hh:mm' }}
+  {{ time$ | ngrxPush | date : 'hh:mm' }}
 </h1>
 
 <h2 class="f2-mktg">
-  {{ greeting$ | async }}
+  {{ greeting$ | ngrxPush }}
 </h2>

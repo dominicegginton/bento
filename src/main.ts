@@ -1,12 +1,10 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from '@bento/app.component';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from '@bento/app.module';
 import { environment } from './environments/environment';
 
-if (environment.production) {
-  enableProdMode();
-}
+if (environment.production) enableProdMode();
 
-bootstrapApplication(AppComponent, {
-  providers: [importProvidersFrom(BrowserModule)],
-}).catch((error) => console.error(error));
+platformBrowserDynamic()
+  .bootstrapModule(AppModule, { ngZone: 'noop' })
+  .catch(console.error);

@@ -15,7 +15,6 @@
             "outputPath": "dist/bento",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.svg", "src/manifest.json"],
