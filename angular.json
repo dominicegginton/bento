@@ -18,10 +18,7 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.svg", "src/manifest.json"],
-            "styles": [
-              "src/styles.scss",
-              "node_modules/@primer/css/index.scss"
-            ]
+            "styles": ["src/styles.scss", "node_modules/@primer/css/index.scss"]
           },
           "configurations": {
             "production": {
@@ -53,7 +50,7 @@
                 "fonts": true
               }
             },
-            "development": {
+            "local": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -70,11 +67,11 @@
             "production": {
               "browserTarget": "bento:build:production"
             },
-            "development": {
-              "browserTarget": "bento:build:development"
+            "local": {
+              "browserTarget": "bento:build:local"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
