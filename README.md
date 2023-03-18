@@ -6,7 +6,7 @@
 
 To install **Bento** into your favourite browser firstly build the extension with:
 
-``` shell
+```shell
 npm run build
 ```
 
@@ -16,4 +16,4 @@ The extension bundle is located in `./dist/bento`. Next install into your chosen
 
 1. Navigate to the [chrome://extensions](chrome://extensions/).
 2. Enable developer mode.
-3. Load the **Bento** extension bundle using the **Unpacked extension** option. 
+3. Load the **Bento** extension bundle using the **Unpacked extension** option.

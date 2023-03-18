@@ -8,7 +8,7 @@ import { filter, map, pairwise, startWith, timer } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  time$ = timer(0, 1000).pipe(
+  readonly time$ = timer(0, 1000).pipe(
     map(() => new Date()),
     startWith(new Date('01/01/2000')),
     pairwise(),
@@ -20,7 +20,7 @@ export class AppComponent {
     map(([_, curr]) => curr)
   );
 
-  greeting$ = this.time$.pipe(
+  readonly greeting$ = this.time$.pipe(
     map((time) => {
       const hours = time.getHours();
       if (hours >= 5 && hours < 12) return 'Good Morning ☕️';
